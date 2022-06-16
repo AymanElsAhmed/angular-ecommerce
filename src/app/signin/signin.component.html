@@ -1,0 +1,31 @@
+<div class="container my-5">
+    <form #loginform="ngForm" (ngSubmit)="loginsubmit(loginform)">
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" ngModel name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required />
+            <small id="emailHelp" class="text-danger" *ngIf="
+          loginform.form.controls['email'] &&
+          loginform.form.controls['email'].touched &&
+          loginform.form.controls['email'].errors?.['pattern'] &&
+          loginform.form.controls['email'].invalid
+        ">
+        E-mail is invalid
+      </small>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" ngModel name="password" required />
+            <small id="emailHelp" class="text-danger" *ngIf="
+          loginform.form.controls['password'] &&
+          loginform.form.controls['password'].touched &&
+          loginform.form.controls['password'].invalid
+        ">
+        Password is invalid
+      </small>
+        </div>
+
+        <button type="submit" [disabled]="!loginform.valid" class="btn btn-primary">
+      Login
+    </button>
+    </form>
+</div>
