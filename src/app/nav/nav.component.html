@@ -1,8 +1,21 @@
 <ul class="nav justify-content-center">
-    <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="#">Sign in</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="#">Sign up</a>
+    <li class="nav-item" *ngIf="!isAuthanticated">
+        <!-- <a class="nav-link active" aria-current="page" href="#">Sign in</a> -->
+        <a class="nav-link active" aria-current="page" mat-button routerLink="/signin">Sign in</a
+    >
+  </li>
+  <li class="nav-item" *ngIf="!isAuthanticated">
+    <a
+      class="nav-link active"
+      aria-current="page"
+      mat-button
+      routerLink="/signup"
+      >Sign up</a
+    >
+  </li>
+  <li class="nav-item" *ngIf="isAuthanticated">
+    <button>
+      <a class="nav-link active" aria-current="page" mat-button>logout</a>
+        </button>
     </li>
 </ul>

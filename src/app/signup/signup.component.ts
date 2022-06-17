@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -8,8 +9,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class SignupComponent implements OnInit {
   signup: FormGroup;
-
-  constructor() {
+  //
+  constructor(public authServise: AuthService) {
     this.signup = new FormGroup({
       fullName: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -35,10 +36,6 @@ export class SignupComponent implements OnInit {
   //   return null;
   // }
 
-  signupSubmit() {
-    console.log(this.signup);
-  }
-
   get signupFormControl() {
     return this.signup.controls;
   }
@@ -58,6 +55,20 @@ export class SignupComponent implements OnInit {
   }
   get confirmPassword() {
     return this.signup.get('confirmPassword');
+  }
+
+  signupSubmit() {
+    if (this.confirmPassword?.value != this.password?.value) {
+      console.log('wrong password');
+    } else {
+      console.log('password valid');
+      console.log(this.signup.value);
+    }
+    this.authServise.createuser(
+      this.fullName?.value,
+      this.email?.value,
+      this.password?.value
+    );
   }
   ngOnInit(): void {}
 }
