@@ -15,7 +15,13 @@
   </li>
   <li class="nav-item" *ngIf="isAuthanticated">
     <button>
-      <a class="nav-link active" aria-current="page" mat-button>logout</a>
-        </button>
-    </li>
+      <a
+        class="nav-link active"
+        aria-current="page"
+        mat-button
+        (click)="onlogout()"
+        >logout</a
+      >
+    </button>
+  </li>
 </ul>
